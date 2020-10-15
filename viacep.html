@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+    <script src="database/bd.js"></script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -78,10 +81,16 @@
                 limpa_formulário_cep();
             }
         };
+
+        function teste_datebase(){
+            alert('tentando salvar');
+            inserir_pessoa("jose da silva", "23/04/1988", "1123123123123123");
+        }
         
     </script>
   </head>
   <body>
+     
       <div class="container">
         <header >
           <img src="head.jpg" class="img-fluid"  alt="Vira Latas" width="1110" >
@@ -118,9 +127,9 @@
               <p><a class="btn btn-warning" href="parceiros.html" role="button">Ver mais &raquo;</a></p>
             </div>
           </div>
-          
+          <button onclick="teste_datebase()">testes</button>
             <!-- Inicio do formulario -->
-             <form method="POST" action="." name="formcadastro" onsubmit="validacao()">
+             <form method="POST" action="#" name="formcadastro" onsubmit="validacao()">
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Nome Completo:<br/>
@@ -226,6 +235,8 @@
       </div>
         <script>
             function validacao(){
+                alert('se é burro?')
+                
                 var formulario = document.form['formcadastro']
                 var nome = formulario.nome.value
                 var email = formulario.email.value
@@ -233,7 +244,7 @@
                 var rg = formulario.rg.value
                 var data = formulario.data.value
                 var tel = formulario.tel.value
-                if (nome == " "){
+                if (nome == ""){
                     alert("Preencha seu nome Completo.");
                     return false;
                 }
