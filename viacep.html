@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Time dos Vira Latas</title>
+    <script>
+    
+        function limpa_formulário_cep() {
+                //Limpa valores do formulário de cep.
+                document.getElementById('rua').value=("");
+                document.getElementById('bairro').value=("");
+                document.getElementById('cidade').value=("");
+                document.getElementById('uf').value=("");
+                //document.getElementById('ibge').value=("");
+        }
+    
+        function meu_callback(conteudo) {
+            if (!("erro" in conteudo)) {
+                //Atualiza os campos com os valores.
+                document.getElementById('rua').value=(conteudo.logradouro);
+                document.getElementById('bairro').value=(conteudo.bairro);
+                document.getElementById('cidade').value=(conteudo.localidade);
+                document.getElementById('uf').value=(conteudo.uf);
+                //document.getElementById('ibge').value=(conteudo.ibge);
+            } //end if.
+            else {
+                //CEP não Encontrado.
+                limpa_formulário_cep();
+                alert("CEP não encontrado.");
+            }
+        }
+            
+        function pesquisacep(valor) {
+    
+            //Nova variável "cep" somente com dígitos.
+            var cep = valor.replace(/\D/g, '');
+    
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+    
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+    
+                //Valida o formato do CEP.
+                if(validacep.test(cep)) {
+    
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    document.getElementById('rua').value="...";
+                    document.getElementById('bairro').value="...";
+                    document.getElementById('cidade').value="...";
+                    document.getElementById('uf').value="...";
+                    //document.getElementById('ibge').value="...";
+    
+                    //Cria um elemento javascript.
+                    var script = document.createElement('script');
+    
+                    //Sincroniza com o callback.
+                    script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+    
+                    //Insere script no documento e carrega o conteúdo.
+                    document.body.appendChild(script);
+    
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                    alert("Formato de CEP inválido.");
+                }
+            } //end if.
+            else {
+                //cep sem valor, limpa formulário.
+                limpa_formulário_cep();
+            }
+        };
+        
+    </script>
+  </head>
+  <body>
+      <div class="container">
+        <header >
+          <img src="head.jpg" class="img-fluid"  alt="Vira Latas" width="1110" >
+        </header>
+        <nav class="navbar navbar-dark bg-warning">
+          <a class="navbar-brand text-dark" href="index.html" class="text-dark">Home</a>
+          <a class="navbar-brand text-dark" href="cadastrar.html">Cadastrar</a>
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Pesquisar</button>
+          </form>
+        </nav>
+        <nav class="navbar"></nav>
+        <div class="container marketing">
+
+          
+          <div class="row">
+            <div class="col-lg-4">
+              <img src="sobrenos.jpg"  alt="Sobre Nós" width="140" height="100">
+              <h2>Quem Somos</h2>
+              <p</p>
+              <p><a class="btn btn-warning" img="adocao.jpg" href="quemsomos.html" role="button">Ver mais &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+              <img src="adocao.jpg"  alt="adoção" width="140" height="100">
+              <h2>Galeria</h2>
+              <p></p>
+              <p><a class="btn btn-warning" href="galeria.html" role="button">Ver mais &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+              <img src="parceiros.jpg"  alt="Parceiros" width="140" height="100">
+              <h2>Parceiros</h2>
+              <p></p>
+              <p><a class="btn btn-warning" href="parceiros.html" role="button">Ver mais &raquo;</a></p>
+            </div>
+          </div>
+          
+            <!-- Inicio do formulario -->
+             <form method="get" action=".">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Nome Completo:<br/>
+                        <input name="nome" type="text" id="nome" value="" size="50" placeholder="Jorge Luís"></label><br/>
+                    </div>             
+                    <div class="col-sm-6">
+                        <label>Data de Nascimento:<br/>
+                            <input name="data" type="date" id="data" /></label><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Gênero:</label><br/>
+                        <select id="genero" name="genero">
+                            <option value="mascuçlino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="feminino">Outros</option>
+                          </select> 
+                    </div>             
+                    <div class="col-sm-6">
+                        <label>CPF:<br/>
+                            <input name="cpf" type="number" id="cpf" maxlength="11" /></label><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>RG:<br/>
+                        <input name="rg" type="number" id="rg" value="" size="30" ></label><br/>
+                    </div>             
+                    <div class="col-sm-6">
+                        <label>Telefone:<br/>
+                            <input name="tel" type="number" id="tel" pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" placeholder="(99) 99999-9999" /></label><br/>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Cep:<br/>
+                        <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+                            onblur="pesquisacep(this.value);"/></label><br />
+                    </div>             
+                    <div class="col-sm-6">
+                        <label>Rua:<br/>
+                            <input name="rua" type="text" id="rua" size="60" /></label><br />
+                    </div>
+                </div>           
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Bairro:<br/>
+                        <input name="bairro" type="text" id="bairro" value="" size="40"></label><br />
+                    </div>             
+                    <div class="col-sm-6">
+                        <label>Cidade:<br/>
+                            <input name="cidade" type="text" id="cidade" size="60" /></label><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Estado:<br/>
+                        <input name="uf" type="text" id="uf" value="" size="2"></label><br />
+                    </div>             
+                    <div class="col-sm-6">
+                        <label for="inputEmail4">Email:<br/>
+                            <input name="email" type="email" id="email" size="60" placeholder="jorgesilva@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/></label><br />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"    value="" id="invalidCheck" name="cep" required>
+                      <label class="form-check-label" for="invalidCheck" href="#" >
+                       Clique em aceitar 
+                      </label>
+                      <a href="termos.html" target="_blank"><strong>Termos e Condições.</strong></a>
+                      <div class="invalid-feedback">
+                        Você deve concondar antes de enviar!
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Enviar</button>
+              </form><br/>
+          <footer class="bg-warning">
+            <div id="contact-area" >
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="main-title" style="text-align:center">Entre em contato conosco no e-mail viralatas@gmail.com ou tel (16) xxxx-xxxx</h6>
+                        </div>
+                            <div class="col-md-4">
+                            <img src="fotos/logo/face.png" width="30" height="30">
+                            <a href="https://www.facebook.com/" alt="Faceboo/TimedosViraLatas">Facebbok/timedosviralas</a>
+                        </div>
+                        <div class="col-md-4">
+                             <img src="fotos/logo/twitter.png" width="30" height="30">
+                            <a href="https://www.twitter.com/" alt="Faceboo/TimedosViraLatas">twitter/timedosviralatas</a>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="fotos/logo/instagram.png" width="40" height="40">
+                             <a href="https://www.instagram.com/" alt="Faceboo/TimedosViraLatas">instagram/timedosviralatas</a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      </div>
+        
+        
+
+    <script>
+        function validacao(){
+            var formulario = document.forms["formcadastro"]
+            var nome = formulario.nome.value
+            var numero = formulario.numero.value
+            var idade = formulario.idade.value
+            var email = formulario.email.value
+            var cpf = formulario.cpf.value
+            var rg = formulario.rg.value
+            var data = formulario.data.value
+            var tel = formulario.tel.value
+            var erro = false
+            if (nome.indexOf(" ") ==-1){
+                alert("Preencha seu nome Completo")
+                erro = true
+            }
+            if (numero){
+
+            }
+            if (erro){
+                return false
+            }
+            else {
+                return true
+            }
+            
+        };
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
+  
+    
+    
+    
+      
+    
+    
