@@ -5,19 +5,19 @@ db = openDatabase('ViraLataDb', '1.0', 'teste', 2 * 1024 * 1024);
 ///cria tabela pessoa para armazenar os cadastros
 db.transaction(
     function (tx) { 
-        tx.executeSql('CREATE TABLE PESSOA(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, data_nascimento VARCHAR, cpf VARCHAR)')
+        tx.executeSql('CREATE TABLE PESSOAs(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, data VARCHAR, cpf VARCHAR, rg VARCHAR, telefone VARCHAR, cep VARCHAR, rua VARCHAR, bairro VARCHAR, estado VARCHAR, email VARCHAR, genero VARCHAR)')
      });
 
 //função para salvar pessoa
-function inserir_pessoa(nome, data_nascimento, cpf){
+function inserir_pessoa(nome, data, cpf, rg, tel, rua, bairro, estado, email, genero){
     alert('inserindo -> ' + nome);
     //chama função do banco de dados
     db.transaction(
         function(tx){
             //executa o comando para inserir as informações
-            tx.executeSql('INSERT INTO PESSOA (nome, data_nascimento, cpf) VALUES(?, ?, ?)',
+            tx.executeSql('INSERT INTO PESSOAs (nome, data_nascimento, cpf, rg, tel, cep, rua, bairro, estado, email, genero) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             //atribui os parametros
-            [nome, data_nascimento, cpf],
+            [nome, data, cpf, rg, tel, rua, bairro, estado, email, genero],
             //caso der certo chama a função sucesso,
             sucesso,
             //se não chama a função de erro

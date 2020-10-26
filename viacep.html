@@ -80,13 +80,8 @@
                 //cep sem valor, limpa formulário.
                 limpa_formulário_cep();
             }
-        };
-
-        function teste_datebase(){
-            alert('tentando salvar');
-            inserir_pessoa("jose da silva", "23/04/1988", "1123123123123123");
-        }
-        
+        }; 
+           
     </script>
   </head>
   <body>
@@ -106,7 +101,7 @@
         <nav class="navbar"></nav>
         <div class="container marketing">
 
-          
+          <center>
           <div class="row">
             <div class="col-lg-4">
               <img src="sobrenos.jpg"  alt="Sobre Nós" width="140" height="100">
@@ -125,11 +120,11 @@
               <h2>Parceiros</h2>
               <p></p>
               <p><a class="btn btn-warning" href="parceiros.html" role="button">Ver mais &raquo;</a></p>
-            </div>
+            </div></center>
           </div>
-          <button onclick="teste_datebase()">testes</button>
+          
             <!-- Inicio do formulario -->
-             <form method="POST" action="#" name="formcadastro" onsubmit="validacao()">
+             <form  method="POST" action="#" name="formcadastro">
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Nome Completo:<br/>
@@ -207,7 +202,7 @@
                       </div>
                     </div>
                   </div>
-                  <button class="btn btn-primary" type="submit" value="Enviar">Enviar</button>
+                  <button class="btn btn-primary" type="submit" value="Enviar"  >Enviar</button>
               </form><br/>
           <footer class="bg-warning">
             <div id="contact-area" >
@@ -233,46 +228,46 @@
             </div>
         </footer>
       </div>
-        <script>
-            function validacao(){
-                alert('se é burro?')
-                
-                var formulario = document.form['formcadastro']
-                var nome = formulario.nome.value
-                var email = formulario.email.value
-                var cpf = formulario.cpf.value
-                var rg = formulario.rg.value
-                var data = formulario.data.value
-                var tel = formulario.tel.value
-                if (nome == ""){
-                    alert("Preencha seu nome Completo.");
-                    return false;
-                }
-                if (data == " "){
-                    alert("Preencha sua data de nascimento.");
-                    return false;
-                }
-                if (email == " "){
-                    alert("Preencha um email valido.");
-                    return false;
-                }
-                if (cpf == " "){
-                    alert("Preencha seu cpf.");
-                    return false;
-                }
-                if (rg == " "){
-                    alert("Preencha seu rg.");
-                    return false;
-                }
-                if (tel == " "){
-                    alert("Preencha seu Telefone Celular.");
-                    return false;
-                }      
-            };
-        </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script>
+            db = openDatabase('ViraLataDb', '1.0', 'teste', 2 * 1024 * 1024);
+            db.transaction(function (criar) { 
+                    criar.executeSql('CREATE TABLE novo(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, data VARCHAR, cpf VARCHAR, rg VARCHAR, telefone VARCHAR, cep VARCHAR, rua VARCHAR, bairro VARCHAR, estado VARCHAR, email VARCHAR, genero VARCHAR)')
+                });
+            function salvar(){
+                var nome = document.getElementById('nome').value;
+                var data = document.getElementById('data').value;
+                var cpf = document.getElementById('cpf').value;
+                var rg = document.getElementById('rg').value;
+                var telefone = document.getElementById('tel').value;
+                var cep = document.getElementById('cep').value;
+                var rua = document.getElementByIdr('rua').value;
+                var bairro = document.getElementById('bairro').value;
+                var estado = document.getElementById('uf').value;
+                var email = document.getElementById('email').value;
+                var genero = document.getElementById('genero').value;
+                db.transaction(function(tx){
+                        //executa o comando para inserir as informações
+                        tx.executeSql('INSERT INTO novo (nome, data_nascimento, cpf, rg, tel, cep, rua, bairro, estado, email, genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                        //atribui os parametros
+                        [nome, data, cpf, rg, tel, rua, bairro, estado, email, genero],
+                        //caso der certo chama a função sucesso,
+                        sucesso,
+                        //se não chama a função de erro
+                        error)
+                    });
+                function sucesso() {
+                alert("Registro inserido com sucesso")
+                };
+
+                //função erro
+                function error() {
+                    alert("Erro ao inserir registro")
+                };
+            }
+        </script>
     </body>
 </html>
   
