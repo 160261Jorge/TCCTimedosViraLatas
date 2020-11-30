@@ -83,6 +83,13 @@
         }; 
            
     </script>
+    <style>
+       hr{
+           border: 1px solid;
+       }
+    
+    
+    </style>
   </head>
   <body>
      
@@ -107,23 +114,23 @@
               <img src="sobrenos.jpg"  alt="Sobre Nós" width="140" height="100">
               <h2>Quem Somos</h2>
               <p</p>
-              <p><a class="btn btn-warning" img="adocao.jpg" href="quemsomos.html" role="button">Ver mais &raquo;</a></p>
+              <p><a class="btn btn-primary" img="adocao.jpg" href="quemsomos.html" role="button">Ver mais &raquo;</a></p>
             </div>
             <div class="col-lg-4">
               <img src="adocao.jpg"  alt="adoção" width="140" height="100">
               <h2>Galeria</h2>
               <p></p>
-              <p><a class="btn btn-warning" href="galeria.html" role="button">Ver mais &raquo;</a></p>
+              <p><a class="btn btn-primary" href="galeria.html" role="button">Ver mais &raquo;</a></p>
             </div>
             <div class="col-lg-4">
               <img src="parceiros.jpg"  alt="Parceiros" width="140" height="100">
               <h2>Parceiros</h2>
               <p></p>
-              <p><a class="btn btn-warning" href="parceiros.html" role="button">Ver mais &raquo;</a></p>
+              <p><a class="btn btn-primary" href="parceiros.html" role="button">Ver mais &raquo;</a></p>
             </div></center>
           </div>
           
-            <!-- Inicio do formulario -->
+            <h2><center>Dados Cadastrais:</h2></center>
              <form  method="POST" action="#" name="formcadastro">
                 <div class="row">
                     <div class="col-sm-6">
@@ -176,6 +183,16 @@
                         <input name="bairro" type="text" id="bairro" value="" size="40"></label><br />
                     </div>             
                     <div class="col-sm-6">
+                        <label>Numero:<br/>
+                            <input name="numero" type="text" id="numero" size="05" /></label><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Complemento:<br/>
+                        <input name="complemento" type="text" id="complemento" value="" size="40"></label><br />
+                    </div>             
+                    <div class="col-sm-6">
                         <label>Cidade:<br/>
                             <input name="cidade" type="text" id="cidade" size="60" /></label><br />
                     </div>
@@ -190,6 +207,57 @@
                             <input name="email" type="email" id="email" size="60" placeholder="jorgesilva@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/></label><br />
                     </div>
                 </div>
+                <hr width="100%">
+                <center><h2>Regras Para adoção</h2></center>
+                <div class="form-check">
+                    <Label>O que levou a adotar um animal?</label></br>
+                      <textarea name="Text1" cols="40" rows="5"></textarea>
+                </div></br>
+                <form>
+                  <div class="form-check">
+                    <Label>Animais que não tem acesso a rua vivem 15 anos ou mais. Voce esta pronto para esse compromisso e responsabilidade de longo prazo?</label></br>
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                      <label  for="exampleRadios1">
+                        sim
+                      </label>
+                  </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                        não
+                      </label>
+                  </div></br></form>
+                  <div class="form-check">
+                    <Label>Quem será o principal responsável pelo cuidado com o animal?</label></br>
+                      <textarea name="Text1" cols="40" rows="5"></textarea>
+                  </div></br>
+                  <form>
+                  <div class="form-check">
+                    <Label>Os animais precisam de cuidados com higiene, boa alimentação e atendimento veterinario. Voce tem condições financeiras para isso?</label></br>
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                      <label class="form-check-label" for="exampleRadios1">
+                        sim
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                        não
+                      </label>
+                  </div></br></form>
+                  <div class="form-check">
+                    <Label>Em caso de emergencia, voce tem como levar seu animal imediatamente ao veterinario?</label></br>
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                      <label class="form-check-label" for="exampleRadios1">
+                        sim
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                        não
+                      </label>
+                  </div></br>
                 <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox"    value="" id="invalidCheck" name="cep" required>
