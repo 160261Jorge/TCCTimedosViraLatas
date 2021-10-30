@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+    <script src="database/bd.js"></script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -77,14 +80,22 @@
                 //cep sem valor, limpa formulário.
                 limpa_formulário_cep();
             }
-        };
-        
+        }; 
+           
     </script>
+    <style>
+       hr{
+           border: 1px solid;
+       }
+    
+    
+    </style>
   </head>
   <body>
+     
       <div class="container">
         <header >
-          <img src="head.jpg" class="img-fluid"  alt="Vira Latas" width="1110" >
+          <img src="head.jpeg" class="img-fluid"  alt="Vira Latas" width="1110" >
         </header>
         <nav class="navbar navbar-dark bg-warning">
           <a class="navbar-brand text-dark" href="index.html" class="text-dark">Home</a>
@@ -97,30 +108,30 @@
         <nav class="navbar"></nav>
         <div class="container marketing">
 
-          
+          <center>
           <div class="row">
             <div class="col-lg-4">
               <img src="sobrenos.jpg"  alt="Sobre Nós" width="140" height="100">
               <h2>Quem Somos</h2>
               <p</p>
-              <p><a class="btn btn-warning" img="adocao.jpg" href="quemsomos.html" role="button">Ver mais &raquo;</a></p>
+              <p><a class="btn btn-primary" img="adocao.jpg" href="quemsomos.html" role="button">Ver mais &raquo;</a></p>
             </div>
             <div class="col-lg-4">
               <img src="adocao.jpg"  alt="adoção" width="140" height="100">
               <h2>Galeria</h2>
               <p></p>
-              <p><a class="btn btn-warning" href="galeria.html" role="button">Ver mais &raquo;</a></p>
+              <p><a class="btn btn-primary" href="galeria.html" role="button">Ver mais &raquo;</a></p>
             </div>
             <div class="col-lg-4">
               <img src="parceiros.jpg"  alt="Parceiros" width="140" height="100">
               <h2>Parceiros</h2>
               <p></p>
-              <p><a class="btn btn-warning" href="parceiros.html" role="button">Ver mais &raquo;</a></p>
-            </div>
+              <p><a class="btn btn-primary" href="parceiros.html" role="button">Ver mais &raquo;</a></p>
+            </div></center>
           </div>
           
-            <!-- Inicio do formulario -->
-             <form method="POST" action="." name="formcadastro" onsubmit="validacao()">
+            <h2><center>Dados Cadastrais:</h2></center>
+             <form  method="POST" action="#" name="formcadastro">
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Nome Completo:<br/>
@@ -172,6 +183,16 @@
                         <input name="bairro" type="text" id="bairro" value="" size="40"></label><br />
                     </div>             
                     <div class="col-sm-6">
+                        <label>Numero:<br/>
+                            <input name="numero" type="text" id="numero" size="05" /></label><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Complemento:<br/>
+                        <input name="complemento" type="text" id="complemento" value="" size="40"></label><br />
+                    </div>             
+                    <div class="col-sm-6">
                         <label>Cidade:<br/>
                             <input name="cidade" type="text" id="cidade" size="60" /></label><br />
                     </div>
@@ -186,6 +207,57 @@
                             <input name="email" type="email" id="email" size="60" placeholder="jorgesilva@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/></label><br />
                     </div>
                 </div>
+                <hr width="100%">
+                <center><h2>Regras Para adoção</h2></center>
+                <div class="form-check">
+                    <Label>1 - O que levou a adotar um animal?</label></br>
+                      <textarea name="Text1" cols="40" rows="5"></textarea>
+                </div></br>
+                <form>
+                  <div class="form-check">
+                    <Label>2 - Animais que não tem acesso a rua vivem 15 anos ou mais. Voce esta pronto para esse compromisso e responsabilidade de longo prazo?</label></br>
+                      <input class="form-check-input" type="radio" name="radio2sim" id="radio2sim" value="sim" checked>
+                      <label class="form-check-label" for="radio2">
+                        sim
+                      </label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="raio2nao" id="radio2nao" value="nao">
+                      <label class="form-check-label" for="RADIO1">
+                        não
+                      </label>
+                  </div></br></form>
+                  <div class="form-check">
+                    <Label>3 - Quem será o principal responsável pelo cuidado com o animal?</label></br>
+                      <textarea name="Text2" cols="40" rows="5"></textarea>
+                  </div></br>
+                  <form>
+                  <div class="form-check">
+                    <Label>4 - Os animais precisam de cuidados com higiene, boa alimentação e atendimento veterinario. Voce tem condições financeiras para isso?</label></br>
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                      <label class="form-check-label" for="exampleRadios1">
+                        sim
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                        não
+                      </label>
+                  </div></br></form>
+                  <div class="form-check">
+                    <Label>5 - Em caso de emergencia, voce tem como levar seu animal imediatamente ao veterinario?</label></br>
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                      <label class="form-check-label" for="exampleRadios1">
+                        sim
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                        não
+                      </label>
+                  </div></br>
                 <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox"    value="" id="invalidCheck" name="cep" required>
@@ -198,70 +270,72 @@
                       </div>
                     </div>
                   </div>
-                  <button class="btn btn-primary" type="submit" value="Enviar">Enviar</button>
+                  <button class="btn btn-primary" type="submit" value="Enviar"  >Enviar</button>
               </form><br/>
           <footer class="bg-warning">
             <div id="contact-area" >
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h6 class="main-title" style="text-align:center">Entre em contato conosco no e-mail viralatas@gmail.com ou tel (16) xxxx-xxxx</h6>
+                            <h6 class="main-title" style="text-align:center">Entre em contato conosco no e-mail viralatas@gmail.com ou tel (16) 98000-0000</h6>
                         </div>
                             <div class="col-md-4">
                             <img src="fotos/logo/face.png" width="30" height="30">
-                            <a href="https://www.facebook.com/" alt="Faceboo/TimedosViraLatas">Facebbok/timedosviralas</a>
+                            <a href="https://www.facebook.com/timedosviralatas" alt="Faceboo/TimedosViraLatas">Facebook/timedosviralas</a>
                         </div>
                         <div class="col-md-4">
                              <img src="fotos/logo/twitter.png" width="30" height="30">
-                            <a href="https://www.twitter.com/" alt="Faceboo/TimedosViraLatas">twitter/timedosviralatas</a>
+                            <a href="https://www.twitter.com/timedosviralatas" alt="Faceboo/TimedosViraLatas">twitter/timedosviralatas</a>
                         </div>
                         <div class="col-md-4">
                             <img src="fotos/logo/instagram.png" width="40" height="40">
-                             <a href="https://www.instagram.com/" alt="Faceboo/TimedosViraLatas">instagram/timedosviralatas</a>
+                             <a href="https://www.instagram.com/timedosviralatas" alt="Faceboo/TimedosViraLatas">instagram/timedosviralatas</a>
                          </div>
                     </div>
                 </div>
             </div>
         </footer>
       </div>
-        <script>
-            function validacao(){
-                var formulario = document.form['formcadastro']
-                var nome = formulario.nome.value
-                var email = formulario.email.value
-                var cpf = formulario.cpf.value
-                var rg = formulario.rg.value
-                var data = formulario.data.value
-                var tel = formulario.tel.value
-                if (nome == " "){
-                    alert("Preencha seu nome Completo.");
-                    return false;
-                }
-                if (data == " "){
-                    alert("Preencha sua data de nascimento.");
-                    return false;
-                }
-                if (email == " "){
-                    alert("Preencha um email valido.");
-                    return false;
-                }
-                if (cpf == " "){
-                    alert("Preencha seu cpf.");
-                    return false;
-                }
-                if (rg == " "){
-                    alert("Preencha seu rg.");
-                    return false;
-                }
-                if (tel == " "){
-                    alert("Preencha seu Telefone Celular.");
-                    return false;
-                }      
-            };
-        </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script>
+            db = openDatabase('ViraLataDb', '1.0', 'teste', 2 * 1024 * 1024);
+            db.transaction(function (criar) { 
+                    criar.executeSql('CREATE TABLE novo(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, data VARCHAR, cpf VARCHAR, rg VARCHAR, telefone VARCHAR, cep VARCHAR, rua VARCHAR, bairro VARCHAR, estado VARCHAR, email VARCHAR, genero VARCHAR)')
+                });
+            function salvar(){
+                var nome = document.getElementById('nome').value;
+                var data = document.getElementById('data').value;
+                var cpf = document.getElementById('cpf').value;
+                var rg = document.getElementById('rg').value;
+                var telefone = document.getElementById('tel').value;
+                var cep = document.getElementById('cep').value;
+                var rua = document.getElementByIdr('rua').value;
+                var bairro = document.getElementById('bairro').value;
+                var estado = document.getElementById('uf').value;
+                var email = document.getElementById('email').value;
+                var genero = document.getElementById('genero').value;
+                db.transaction(function(tx){
+                        //executa o comando para inserir as informações
+                        tx.executeSql('INSERT INTO novo (nome, data_nascimento, cpf, rg, tel, cep, rua, bairro, estado, email, genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                        //atribui os parametros
+                        [nome, data, cpf, rg, tel, rua, bairro, estado, email, genero],
+                        //caso der certo chama a função sucesso,
+                        sucesso,
+                        //se não chama a função de erro
+                        error)
+                    });
+                function sucesso() {
+                alert("Registro inserido com sucesso")
+                };
+
+                //função erro
+                function error() {
+                    alert("Erro ao inserir registro")
+                };
+            }
+        </script>
     </body>
 </html>
   
